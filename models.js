@@ -37,6 +37,6 @@ modelName: 'Dog',
 
 sequelize.sync({alter:true});
 
-module.exports = {User};
+module.exports = {User, Dog};
 
 //37:31
