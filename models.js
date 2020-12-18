@@ -1,11 +1,11 @@
 const {Sequelize, DataTypes, Model} = require('sequelize');
-const sequelize = require('./db');
+const {sequelize} = require('./db');
 
-class User extends Model{
-
+class User extends Model {
+ 
 }
 
-User,init({
+User.init({
 firstName:{
     type: DataTypes.STRING
 },
