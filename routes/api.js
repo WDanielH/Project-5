@@ -26,7 +26,14 @@ router.get('/dogs', async function(req, res, next) {
 
 
   // list one dog with ID
-  router.get('/dogs/:id', function(req, res, next) {
+  router.get('/dogs/:id', async function(req, res, next) {
+
+    console.log(req.params);
+
+    let dog = await models.Dog.findAll({where: {id: req.params.id}});
+
+    res.json(dog);
+
     res.render('index', { title: 'This should show a particular dog.' });
   });
 
@@ -46,6 +53,9 @@ router.get('/dogs', async function(req, res, next) {
 
   //update dog with ID 
   router.put('/dogs/:id', function(req, res, next) {
+
+
+
     res.render('index', { title: 'This should update a dog.' });
   });
 
