@@ -18,6 +18,25 @@ sequelize,
 modelName: 'User',
 });
 
+//==============================
+
+class Dog extends Model {
+ 
+}
+
+Dog.init({
+Name:{
+    type: DataTypes.STRING
+},
+
+}, {
+sequelize,
+modelName: 'Dog',
+});
+
+
 sequelize.sync({alter:true});
 
 module.exports = {User};
+
+//37:31
