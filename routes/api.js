@@ -7,7 +7,7 @@ const models = require('../models');
 
 console.log(models)
 
-//list all dogs
+//list all dogs - works 
 router.get('/dogs', async function(req, res, next) {
 
     // request comes in
@@ -29,10 +29,19 @@ router.get('/dogs', async function(req, res, next) {
     res.render('index', { title: 'This should show a particular dog.' });
   });
 
-  // create a dog
-  router.post('/dogs', function(req, res, next) {
-    res.render('index', { title: 'This should create a dog.' });
+  // create a dog ----------------------------------- works
+// send info about dog (name) 
+
+
+  router.post('/dogs', async function(req, res, next) {
+    console.log(req.body);
+
+    let dog = await models.Dog.create( {Name: req.body.name});
+
+    res.json(dog);
   });
+
+
 
   //update dog with ID 
   router.put('/dogs/:id', function(req, res, next) {
