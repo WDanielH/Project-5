@@ -25,12 +25,12 @@ router.get('/dogs', async function(req, res, next) {
 
 
 
-  // list one dog with ID
+  // list one dog with ID - works
   router.get('/dogs/:id', async function(req, res, next) {
 
     console.log(req.params);
 
-    let dog = await models.Dog.findAll({where: {id: req.params.id}});
+    let dog = await models.Dog.findOne({where: {id: req.params.id}});
 
     res.json(dog);
 
@@ -51,16 +51,22 @@ router.get('/dogs', async function(req, res, next) {
 
 
 
-  //update dog with ID 
-  router.put('/dogs/:id', function(req, res, next) {
+  //update dog with ID ------------------------------------------- works
+  router.put('/dogs/:id', async function(req, res, next) {
 
-
+let dog = await models.Dog.update(req.body, {where: {id: req.params.id}});
+res.json(dog);
 
     res.render('index', { title: 'This should update a dog.' });
   });
 
-  //delete dog with ID 
-  router.delete('/dogs/:id', function(req, res, next) {
+  //delete dog with ID -------------------------- 
+
+  router.delete('/dogs/:id', async function(req, res, next) {
+
+    const dog = await models.Dog.destroy({where: {id: req.params.id}});
+    res.json(dog);
+
     res.render('index', { title: 'This should delete a dog.' });
   });
 
